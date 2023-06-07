@@ -23,6 +23,7 @@ export class ColorSet {
     this.onFormAddColor = this.onFormAddColor.bind(this);
     this.onFormChangeColor = this.onFormChangeColor.bind(this);
     this.addColorSet = this.addColorSet.bind(this);
+    this.changeColorSet = this.changeColorSet.bind(this);
     this.saveColorSets = this.saveColorSets.bind(this);
     this.deleteColorSet = this.deleteColorSet.bind(this);
     this.loadColorSets = this.loadColorSets.bind(this);
@@ -61,50 +62,24 @@ export class ColorSet {
     this.colorSets[index].colorType = formData.get("color-type");
     this.colorSets[index].colorHex = this.form.querySelector('.picker_editor input').value;
 
-    this.addColorSet(this.colorSets[index])
+    this.changeColorSet(this.colorSets[index])
     modals.closeModal(this.modal);
     this.form.reset();
   }
 
-  // Добавляет новую строку либо изменяет сушествующую в зависимисти от data на кнопке формы: add / change
+  // Добавляет новую строку
   addColorSet(colorSet) {
-    let trow;
-    const rowTemplate = `
-      <td>
-        <div class="color-example" style="background-color: ${colorSet.colorHex}"></div>
-      </td>
-      <td>${colorSet.colorName}</td>
-      <td>${colorSet.colorType}</td>
-      <td>${colorSet.colorHex}</td>
-      <td>
-        <button class="btn btn--hover-blue" data-table-btn="change" type="button" aria-label="Редактировать">
-          <svg width="20" height="20" aria-hidden="true">
-            <use xlink:href="img/sprite.svg#icon-pen"></use>
-          </svg> 
-        </button>
-      </td>
-      <td>
-        <button class="btn btn--hover-sunset" data-table-btn="delete" type="button" aria-label="Удалить">
-          <svg width="20" height="20" aria-hidden="true">
-            <use xlink:href="img/sprite.svg#icon-bin"></use>
-          </svg>
-        </button>
-      </td>`;
-
-    if (this.formBtn.dataset.formBtn === 'change') {
-      trow = this.tbody.querySelector(`[data-color-set="${colorSet.id}"]`);
-      trow.innerHTML = rowTemplate;
-      return;
-    }
-
-    trow = document.createElement('tr');
-    trow.setAttribute('data-color-set', `${colorSet.id}`);
-    trow.setAttribute('data-table-row', '');
-    trow.setAttribute('draggable', true);
-    trow.innerHTML = rowTemplate;
+    const trow = document.createElement('row-component');
+    trow.setAttribute('color-set', `${JSON.stringify(colorSet)}`);
     this.tbody.appendChild(trow);
 
     dragDrop.init();
+  }
+
+  // Изменяет сушествующую строку
+  changeColorSet(colorSet) {
+    this.tbody.querySelector(`[data-table-row="${colorSet.id}"]`).setAttribute('color-set', `${JSON.stringify(colorSet)}`);
+    this.tbody.querySelector(`[data-table-row="${colorSet.id}"]`).dispatchEvent(new Event('updateSet'));
   }
 
   // Сохраняет набор цветов в localStorage
@@ -132,7 +107,7 @@ export class ColorSet {
     const trows = this.tbody.querySelectorAll('[data-table-row]');
     let orderedColorSets = [];
     trows.forEach(row => {
-      const element = this.colorSets.find(set => row.dataset.colorSet === set.id.toString());
+      const element = this.colorSets.find(set => row.dataset.tableRow === set.id.toString());
       const eltIsDuplicate = orderedColorSets.find(elt => elt.id === element.id);
       if (!eltIsDuplicate) {
         orderedColorSets.push(element);
@@ -159,9 +134,7 @@ export class ColorSet {
     this.formBtn.dataset.formBtn = 'add';
     this.formBtn.innerText = 'Добавить';
 
-    picker.setOptions({
-      color: '#fff',
-    });
+    picker.setColor('#fff');
   }
 
   // Удаляет одну строку из таблицы
@@ -183,15 +156,13 @@ export class ColorSet {
     this.formBtn.dataset.formBtn = 'change';
     this.formBtn.innerText = 'Изменить';
 
-    const id = target.closest('[data-color-set]').dataset.colorSet;
+    const id = target.closest('[data-table-row]').dataset.tableRow;
     const set = this.colorSets.find(set => set.id.toString() === id);
 
     this.form.querySelector('[data-color-name]').value = set.colorName;
     this.form.querySelector('[data-color-type]').value = set.colorType;
 
-    picker.setOptions({
-      color: set.colorHex,
-    });
+    picker.setColor(set.colorHex);
 
     this.colorSetData = {
       id: id,
