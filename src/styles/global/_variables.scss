@@ -1,0 +1,39 @@
+// Colours
+// ---------------------------------
+
+$color-default-black:               #000000;
+$color-default-white:               #ffffff;
+
+$color-transparent:                 rgba(255, 255, 255, 0);
+
+$color-night-rider:                 #313131;
+$color-suva-grey:                   #8D8D8D;
+$color-charcoal:                    #424242;
+$color-silver:                      #BFBFBF;
+$color-turquoise-blue:              #53CBF1;
+$color-sunset:                      #CA4C4C;
+$color-zambezi:                     #5F5F5F;
+
+
+// Typography
+// ---------------------------------
+
+$fs-default:                        16px;
+
+$ff-lato:                           "Lato", "Arial", sans-serif;
+
+// Animation
+// ---------------------------------
+
+$tf-default:                        ease;
+$trans-default:                     0.3s $tf-default;
+
+$trans-modal:                       0.6s cubic-bezier(0.55, 0, 0.1, 1);
+
+$trans-600:                         0.6s $tf-default;
+
+// Viewports
+// ---------------------------------
+
+$vp-768:                            768px;
+$vp-1024:                           1024px;

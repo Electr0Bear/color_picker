@@ -1,0 +1,17 @@
+@import '~normalize.css/normalize';
+@import '~vanilla-picker/dist/vanilla-picker.csp';
+
+@import 'global/variables';
+@import 'global/fonts';
+@import 'global/mixins';
+@import 'global/global';
+@import 'global/container';
+
+@import 'components/title';
+@import 'components/btn';
+@import 'components/input';
+
+@import 'blocks/modal';
+@import 'blocks/main';
+@import 'blocks/color-picker';
+@import 'blocks/pallet';

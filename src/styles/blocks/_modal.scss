@@ -1,0 +1,32 @@
+.modal {
+  display: none;
+
+  background-color: rgba($color-default-black, .5);
+
+  backdrop-filter: blur(2px);
+
+  &.active {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 20px 15px 15px 15px;
+
+    color: $color-default-white;
+    border-radius: 20px;
+    background-color: $color-night-rider;
+  }
+}

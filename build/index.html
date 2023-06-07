@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>Drag&Drop Colour Picker</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Drag&Drop Colour Picker — Козин Д., тестовое задание">
+    <link rel="stylesheet" href="css/style.min.css">
+  </head>
+  <body>
+    <header class="header"></header>
+    <main class="main">
+      <div class="container">
+        <div class="main__color-picker color-picker">
+          <div class="color-picker__header">
+            <h1 class="title color-picker__header-title">Таблица цветов</h1>
+            <div class="color-picker__header-btns">
+              <button 
+                class="btn color-picker__header-btn" 
+                aria-label="Сохранить таблицу"
+                data-color-sets="save"
+              > 
+                <svg width="25" height="25" aria-hidden="true">
+                  <use xlink:href="img/sprite.svg#icon-save"></use>
+                </svg>              
+              </button>
+              <button 
+                class="btn color-picker__header-btn" 
+                aria-label="Очистить таблицу"
+                data-color-sets="delete"
+              >
+                <svg width="25" height="25" aria-hidden="true">
+                  <use xlink:href="img/sprite.svg#icon-close"></use>
+                </svg>              
+              </button> 
+            </div>
+          </div>
+
+          <div class="color-picker__table">
+            <table>
+              <thead>
+                <th>Цвет</th>
+                <th>Название</th>
+                <th>Тип</th>
+                <th>Код</th>
+                <th>Изменить</th>
+                <th>Удалить</th>
+              </thead>
+              <tbody data-table-body>
+              </tbody>
+            </table>
+          </div>
+          <button
+            class="btn btn--round-blue-border color-picker__add-color-btn"
+            data-modal-btn="color-picker"
+            type="button" 
+          >
+            Добавить цвет
+          </button>   
+        </div>
+
+      </div>
+    </main>
+    <footer class="footer"></footer>
+    <div class="modal modal--color-picker" data-modal="color-picker">
+      <div class="modal__wrapper">
+        <div class="modal__content">
+          <div class="pallet">
+            <form action="">
+              <div class="input">
+                <label for="color-name">Название цвета</label>
+                <input id="color-name" name="color-name" type="text" placeholder="Введите название" required data-color-name>
+              </div>
+              <div class="input">
+                <label for="color-type">Выберите тип</label>
+                <select name="color-type" id="color-type" data-color-type>
+                  <option value="main">Main</option>
+                  <option value="primary">Primary</option>
+                  <option value="secondary">Secondary</option>
+                  <option value="base">Base</option>
+                </select>
+              </div>
+              <div class="pallet__color-picker" data-color-picker>
+              </div>
+              <div class="pallet__rgb-output visually-hidden">
+                <input type="text" value="rgb(255,255,255)" data-color-rgb="rgb">
+              </div>
+              <div class="pallet__rgb-input input input--rgb" data-color-rgb="input">
+                <input type="text" value="255" data-color-rgb="rInput" maxlength="3">
+                <input type="text" value="255" data-color-rgb="bInput" maxlength="3">
+                <input type="text" value="255" data-color-rgb="gInput" maxlength="3">
+              </div>
+              <button class="btn btn--round-blue pallet__add-btn" type="submit" data-form-btn>
+                Добавить
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/main.min.js"></script>
+  </body>
