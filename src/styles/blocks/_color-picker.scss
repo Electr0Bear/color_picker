@@ -1,0 +1,124 @@
+.color-picker {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  width: fit-content;
+  padding: 20px 0 32px 0;
+
+  color: $color-default-white;
+  border-radius: 20px;
+  background-color: $color-night-rider;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+
+    .btn {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  &__header-title {
+    flex-grow: 1;
+
+    text-align: center;
+  }
+
+  &__header-btn {
+    margin-left: 10px;
+  }
+
+  &__table {
+    width: fit-content;
+
+    background-color: $color-charcoal;
+
+    table {
+      border-collapse: collapse;
+    }
+
+    thead {
+      border-bottom: 1px solid $color-night-rider;
+    }
+
+    tr {
+      height: 54px;
+
+      background-color: $color-charcoal;
+
+      &[draggable] {
+        cursor: move;
+      }
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $color-night-rider;
+      }
+    }
+
+    th {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 22px;
+
+      width: 115px;
+      padding: 5px 15px;
+
+      text-align: left;
+
+      &:not(:last-child) {
+        border-right: 1px solid $color-night-rider;
+      }
+
+      &:nth-child(1) {
+        width: 90px;
+      }
+
+      &:nth-child(2) {
+        width: 134px;
+      }
+    }
+
+    td {
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 15px;
+
+      padding: 5px 15px;
+
+      text-align: left;
+
+      color: $color-silver;
+
+      &:not(:last-child) {
+        border-right: 1px solid $color-night-rider;
+      }
+
+      .color-example {
+        width: 100%;
+        max-width: 41px;
+        height: 100%;
+        height: 41px;
+      }
+    }
+
+    .btn {
+      display: flex;
+
+      width: 20px;
+      height: 20px;
+      margin: 0 auto;
+    }
+  }
+
+  &__add-color-btn {
+    display: flex;
+
+    min-width: 220px;
+    margin-top: 30px;
+  }
+}

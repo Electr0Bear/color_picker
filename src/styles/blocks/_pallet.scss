@@ -1,0 +1,53 @@
+.pallet {
+  max-width: 280px;
+
+  &__rgb-input {
+    max-width: 280px;
+    padding: .3em .3em 0 .3em;
+  }
+
+  &__add-btn {
+    width: 100%;
+    margin-top: 28px;
+  }
+
+  .input {
+    &:not(:last-of-type) {
+      margin-bottom: 17px;
+    }
+  }
+
+  .picker_wrapper.layout_default {
+    width: 100%;
+    padding: 0;
+
+    background: $color-night-rider;
+    box-shadow: none;
+  }
+
+  .picker_editor {
+    input {
+      color: $color-default-white;
+      border: 1px solid $color-zambezi;
+      border-radius: 6px;
+      background-color: $color-charcoal;
+      box-shadow: none;
+    }
+  }
+
+  .picker_sample {
+    overflow: hidden;
+
+    background: $color-charcoal;
+    box-shadow: none;
+
+    &::before {
+      border: 1px solid $color-zambezi;
+      border-radius: 6px;
+    }
+  }
+
+  .picker_done {
+    display: none;
+  }
+}
