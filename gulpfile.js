@@ -18,7 +18,7 @@ const gcmq = require('gulp-group-css-media-queries');
 const html = () => {
   return gulp.src('src/*.html')
     .pipe(plumber())
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('docs'));
 }
 
 const css = () => {
@@ -35,14 +35,14 @@ const css = () => {
     .pipe(csso())
     .pipe(rename('style.min.css'))
     .pipe(sourcemap.write('.'))
-    .pipe(gulp.dest('build/css'))
+    .pipe(gulp.dest('docs/css'))
     .pipe(server.stream());
 };
 
 const js = () => {
   return gulp.src(['src/js/main.js'])
     .pipe(webpackStream(webpackConfig))
-    .pipe(gulp.dest('build/js'))
+    .pipe(gulp.dest('docs/js'))
 };
 
 const copy = () => {
@@ -52,33 +52,33 @@ const copy = () => {
   ], {
     base: 'src',
   })
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('docs'));
 };
 
 const clean = () => {
-  return del('build');
+  return del('docs');
 };
 
 const sprite = () => {
   return gulp.src('src/img/sprite/*.svg')
     .pipe(svgstore({inlineSvg: true}))
     .pipe(rename('sprite.svg'))
-    .pipe(gulp.dest('build/img'));
+    .pipe(gulp.dest('docs/img'));
 };
 
 const copySvg = () => {
   return gulp.src('src/img/**/*.svg', {base: 'src'})
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('docs'));
 };
 
 const copyImages = () => {
   return gulp.src('src/img/**/*.{png,jpg,webp}', {base: 'src'})
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('docs'));
 };
 
 const syncServer = () => {
   server.init({
-    server: 'build/',
+    server: 'docs/',
     index: 'index.html',
     notify: false,
     open: true,
