@@ -40,7 +40,8 @@
 
     &-grid-layout {
       display: grid;
-      grid-template-columns: minmax(50px, 90px) minmax(50px, 134px) repeat(4, minmax(50px, 115px));
+
+      grid-template-columns: minmax(70px, 90px) minmax(110px, 134px) repeat(4, minmax(110px, 115px));
     }
 
     &-row {
@@ -49,16 +50,29 @@
       &:not(:last-child) {
         border-bottom: 1px solid $color-night-rider;
       }
+
+      &[draggable="true"] {
+        cursor: move;
+      }
     }
 
     &-cell {
-      padding: 5px 15px;
       display: flex;
-      justify-content: left;
       align-items: center;
+      justify-content: left;
+
+      padding: 5px 15px;
 
       &:not(:last-child) {
         border-right: 1px solid $color-night-rider;
+      }
+
+      .btn {
+        display: flex;
+
+        width: 20px;
+        height: 20px;
+        margin: 0 auto;
       }
     }
 
@@ -67,82 +81,6 @@
       max-width: 41px;
       height: 100%;
       height: 41px;
-    }
-
-    table {
-      border-collapse: collapse;
-    }
-
-    thead {
-      border-bottom: 1px solid $color-night-rider;
-    }
-
-    tr {
-      height: 54px;
-
-      background-color: $color-charcoal;
-
-      &[draggable] {
-        cursor: move;
-      }
-
-      &:not(:last-child) {
-        border-bottom: 1px solid $color-night-rider;
-      }
-    }
-
-    th {
-      font-size: 18px;
-      font-weight: 600;
-      line-height: 22px;
-
-      width: 115px;
-      padding: 5px 15px;
-
-      text-align: left;
-
-      &:not(:last-child) {
-        border-right: 1px solid $color-night-rider;
-      }
-
-      &:nth-child(1) {
-        width: 90px;
-      }
-
-      &:nth-child(2) {
-        width: 134px;
-      }
-    }
-
-    td {
-      font-size: 11px;
-      font-weight: 400;
-      line-height: 15px;
-
-      padding: 5px 15px;
-
-      text-align: left;
-
-      color: $color-silver;
-
-      &:not(:last-child) {
-        border-right: 1px solid $color-night-rider;
-      }
-
-      .color-example {
-        width: 100%;
-        max-width: 41px;
-        height: 100%;
-        height: 41px;
-      }
-    }
-
-    .btn {
-      display: flex;
-
-      width: 20px;
-      height: 20px;
-      margin: 0 auto;
     }
   }
 

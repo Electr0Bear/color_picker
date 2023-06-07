@@ -100,6 +100,10 @@ export class ColorSet {
   deleteColorSet() {
     localStorage.removeItem("colorSets");
     this.tbody.innerHTML = '';
+
+    if (this.tbody.querySelectorAll('[data-table-row]').length <= 1) {
+      dragDrop.unInit();
+    }
   }
 
   // Отслеживает изменение порядка строк в таблице и пересобирает порядок в локальном файле с данными
@@ -146,6 +150,10 @@ export class ColorSet {
 
     const el = this.colorSets.find(set => trow.dataset.colorSet === set.id.toString());
     this.colorSets.splice(this.colorSets.indexOf(el), 1);
+
+    if (this.tbody.querySelectorAll('[data-table-row]').length <= 1) {
+      dragDrop.unInit();
+    }
   }
 
   // Колбек по клику на кнопу редактировать
